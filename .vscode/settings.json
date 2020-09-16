@@ -1,0 +1,9 @@
+{
+  "prettier.ignorePath": "",
+  "npm.runSilent": true,
+  "prettier.trailingComma": "all",
+  "prettier.useEditorConfig": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.autoGuessEncoding": true
+ 
+}
