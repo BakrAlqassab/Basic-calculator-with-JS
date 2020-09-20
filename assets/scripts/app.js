@@ -6,7 +6,6 @@ function getUserNumberInput() {
   return parseInt(userInput.value);
 }
 
-
 // Generate and writes calculation log
 function createandWriteOutput(operator, resultBeforecalc, calcNumber) {
   const calcDesecription = `${resultBeforecalc} ${operator}  ${calcNumber}`;
@@ -39,6 +38,11 @@ function addNumber() {
   if (userInput.value == '') {
     console.log(' Empty text Field!!! ');
     alert('Please insert value!');
+    return;
+  }
+  if (!enteredNum) {
+    alert(" The value can't be ' 0 ' ");
+    userInput.value = null;
     return;
   }
 
