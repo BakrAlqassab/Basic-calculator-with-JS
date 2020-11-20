@@ -32,84 +32,56 @@ function logEntryFunction(
   console.log(logEntries);
 }
 
-function addNumber() {
-  const enteredNum = getUserNumberInput();
 
-  if (userInput.value == '') {
-    console.log(' Empty text Field!!! ');
-    alert('Please insert value!');
-    return;
-  }
-  if (!enteredNum) {
-    alert(" The value can't be ' 0 ' ");
-    userInput.value = null;
-    return;
-  }
 
-  const initialResult = currentResult;
-  /* gets inputs from input feild and parse it to integer  */
-  currentResult += +enteredNum;
-  // retreived from Vendor.js file
-  createandWriteOutput(' + ', initialResult, enteredNum);
+  function calculate(operation) {
+    const enteredNum = getUserNumberInput();
 
-  // function include the Object and the array to avoid repetation
-  logEntryFunction(' ADD  ', initialResult, enteredNum, currentResult);
-}
+    if (userInput.value == '') {
+      console.log(' Empty text Field!!! ');
+      alert('insert value :)');
+      return;
+    }
+    const initialResult = currentResult;
+    let operator;
+    if (operation === 'ADD') {
+      operator ="+";
+      currentResult += +enteredNum;
+      // retreived from Vendor.js file
+      // createandWriteOutput(' + ', initialResult, enteredNum);
 
-function subtractNumber() {
-  const enteredNum = getUserNumberInput();
+      // // function include the Object and the array to avoid repetation
+      // logEntryFunction(' ADD  ', initialResult, enteredNum, currentResult);
+    } else if (operation === 'SUBTRACT') {
+      operator ="-"
+      currentResult -= +enteredNum;
 
-  if (userInput.value == '') {
-    console.log(' Empty text Field!!! ');
-    alert('insert value :)');
-    return;
-  }
-  const initialResult = currentResult;
+    
+    } else if (operation === 'MULTIPLY') {
+      operator ="*";
+      currentResult *= +enteredNum;
+    
+    } else if (operation === 'DIVIDE') {
+      operator = "/";
+      currentResult /= +enteredNum;
+    
+    }
 
-  currentResult -= +enteredNum;
+      createandWriteOutput(operator, initialResult, enteredNum);
 
-  createandWriteOutput(' - ', initialResult, enteredNum);
+      logEntryFunction(operation, initialResult, enteredNum, currentResult);
+  
 
-  logEntryFunction(' SUBTRACT ', initialResult, enteredNum, currentResult);
-}
-
-function multiplyNumber() {
-  const enteredNum = getUserNumberInput();
-  if (userInput.value == '') {
-    console.log(' Empty text Field!!! ');
-    alert('insert value :)');
-    return;
-  }
-
-  const initialResult = currentResult;
-
-  currentResult *= +enteredNum;
-  createandWriteOutput(' * ', initialResult, enteredNum);
-
-  logEntryFunction(' MULTIPLY ', initialResult, enteredNum, currentResult);
-}
-
-function devidedNumber() {
-  const enteredNum = getUserNumberInput();
-  if (userInput.value == '') {
-    console.log(' Empty text Field!!! ');
-    alert('insert value :)');
-    return;
-  }
-
-  const initialResult = currentResult;
-
-  currentResult /= +enteredNum;
 
   createandWriteOutput(' / ', initialResult, enteredNum);
 
   logEntryFunction(' DEVISION ', initialResult, enteredNum, currentResult);
 }
 
-addBtn.addEventListener('click', addNumber);
+addBtn.addEventListener('click', calculate.bind(this,"ADD"));
 
-subtractBtn.addEventListener('click', subtractNumber);
+subtractBtn.addEventListener('click',  calculate.bind(this,"SUBTRACT"));
 
-multiplyBtn.addEventListener('click', multiplyNumber);
+multiplyBtn.addEventListener('click',  calculate.bind(this,"MULTIPLY"));
 
-divideBtn.addEventListener('click', devidedNumber);
+divideBtn.addEventListener('click',  calculate.bind(this,"DIVIDE"));
